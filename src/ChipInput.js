@@ -119,7 +119,7 @@ class ChipInput extends React.Component {
     isClean: true,
     chips: [],
     focusedChip: null,
-    inputValue: ''
+    inputValue: this.props.inputValue
   }
 
   constructor (props) {
@@ -162,7 +162,7 @@ class ChipInput extends React.Component {
       const index = parseInt(child.key, 10);
       const chosenRequest = dataSource[index];
       this.handleAddChip(chosenRequest)
-  
+
       this.autoComplete.setState({
         searchText: '',
       });
@@ -214,7 +214,7 @@ class ChipInput extends React.Component {
       }
 
       this.setState({ isFocused: false })
-      
+
       if (this.props.onBlur) this.props.onBlur(event)
     }
   }
@@ -511,6 +511,7 @@ ChipInput.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.arrayOf(PropTypes.object)
   ]),
+  inputValue: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
@@ -531,6 +532,7 @@ ChipInput.propTypes = {
 
 ChipInput.defaultProps = {
   filter: AutoComplete.caseInsensitiveFilter,
+  inputValue: '',
   newChipKeyCodes: [13],
   clearOnBlur: true
 }
